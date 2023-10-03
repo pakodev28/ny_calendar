@@ -1,0 +1,121 @@
+<main>
+	<section id="events-section">
+		<div class="filters">
+			<label for="month-filter">Выбрать месяц:</label>
+			<select id="month-filter">
+				<option value="all">Все месяцы</option>
+				<option value="январь">Январь</option>
+				<option value="февраль">Февраль</option>
+				<option value="март">Март</option>
+				<option value="апрель">Апрель</option>
+				<option value="май">Май</option>
+				<option value="июнь">Июнь</option>
+				<option value="июль">Июль</option>
+				<option value="август">Август</option>
+				<option value="сентябрь">Сентябрь</option>
+				<option value="октябрь">Октябрь</option>
+				<option value="ноябрь">Ноябрь</option>
+				<option value="декабрь">Декабрь</option>
+			</select>
+		</div>
+
+		<div class="events-list">
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+			<!-- ------------------------------------------------------------------------------------------ -->
+		</div>
+	</section>
+</main>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+	var monthFilter = document.getElementById('month-filter');
+	var eventsList = document.querySelector('.events-list');
+
+	function getCurrentMonth() {
+	  var options = { month: 'long', timeZone: 'America/New_York' };
+	  var dateTimeFormat = new Intl.DateTimeFormat('ru-RU', options);
+	  var [{ value: currentMonth }] = dateTimeFormat.formatToParts(new Date());
+	  return currentMonth;
+	}
+
+	function hidePastEvents() {
+	  var now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+	  var eventCards = Array.from(eventsList.querySelectorAll('.event-card'));
+
+	  eventCards.forEach(function (eventCard) {
+	    var dateForScript = eventCard.querySelector('.event-date-for-script').textContent;
+	    var dateParts = dateForScript.split('.');
+	    var day = parseInt(dateParts[0], 10);
+	    var month = parseInt(dateParts[1], 10) - 1;
+	    var year = parseInt(dateParts[2], 10);
+	    var eventDate = new Date(year, month, day);
+
+	    var currentYear = now.getFullYear();
+	    var currentMonth = now.getMonth();
+	    var currentDay = now.getDate();
+	    var currentDate = new Date(currentYear, currentMonth, currentDay);
+
+	    if (eventDate < currentDate) {
+	      eventCard.style.display = 'none';
+	    }
+	  });
+	}
+
+	function sortEventCards() {
+	  var eventCards = Array.from(eventsList.querySelectorAll('.event-card'));
+
+	  eventCards.sort(function (a, b) {
+	    var dateA = a.querySelector('.event-date-for-script').textContent;
+	    var dateB = b.querySelector('.event-date-for-script').textContent;
+
+	    var datePartsA = dateA.split('.');
+	    var datePartsB = dateB.split('.');
+	    var dateObjA = new Date(datePartsA[2], datePartsA[1] - 1, datePartsA[0]);
+	    var dateObjB = new Date(datePartsB[2], datePartsB[1] - 1, datePartsB[0]);
+	    return dateObjA - dateObjB;
+	  });
+
+	  eventCards.forEach(function (eventCard) {
+	    eventsList.appendChild(eventCard);
+	  });
+	}
+
+	function filterEvents() {
+	  var eventCards = Array.from(eventsList.querySelectorAll('.event-card'));
+
+	  eventCards.forEach(function (eventCard) {
+	    eventCard.style.display = 'block';
+	  });
+
+	  sortEventCards();
+
+	  var selectedMonth = monthFilter.value;
+
+	  if (selectedMonth !== 'all') {
+	    eventCards.forEach(function (eventCard) {
+	      var dataMonth = eventCard.getAttribute('data-event-month');
+
+	      if (selectedMonth !== dataMonth) {
+	        eventCard.style.display = 'none';
+	      }
+	    });
+	  }
+	  hidePastEvents();
+	}
+
+	sortEventCards();
+
+	monthFilter.value = getCurrentMonth();
+	filterEvents();
+
+	monthFilter.addEventListener('change', filterEvents);
+	});
+</script>
