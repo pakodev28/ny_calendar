@@ -1,131 +1,202 @@
 /* Общие стили */
-main {
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Заголовок секции */
-  #events-section {
-    text-align: left;
-    padding: 20px;
-  }
-  
-  /* Стили для фильтров */
-  .filters {
-    margin-bottom: 20px;
-  }
-  
-  .filters label {
-    font-weight: bold;
-  }
-  
-  /* Стили для фильтра по месяцу */
-  #month-filter {
-    margin-left: 10px;
-    padding: 5px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    color: black;
-  }
-  
-  /* Карточки событий */
-  .events-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Для равномерного распределения карточек */
-  }
-  
-  .event-card {
-    flex: 0 0 calc(33.33% - 10px);
-    padding: 2px;
-    padding-bottom: 25px;
-    border-radius: 5px;
-    margin: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  
-  }
-  
-  /* Медиазапрос для мобильных и планшетов */
-  @media screen and (max-width: 1023px) {
-    .event-card {
-      flex: 0 0 100%;
-      margin-bottom: 17px;
-      padding-bottom: 30px;
+ main {
+     font-family: Arial, sans-serif;
+     font-size: 15px;
+     font-weight: 400;
+     margin: 0;
+     padding: 0;
+}
+/* Заголовок секции */
+ #events-section {
+     text-align: left;
+     padding: 20px;
+}
+/* Стили для фильтров */
+ .filters {
+     margin-bottom: 20px;
+     text-align: center;
+}
+ .filters label {
+     font-weight: bold;
+}
+/* Стили для фильтра по месяцу */
+ #month-filter {
+     margin-left: 10px;
+     padding: 5px;
+     border: 2px solid #000;
+     border-radius: 10px;
+     color: #02374b;
+     background-color: #f8c10d;
+     border-color: #f8c10d;
+     border-radius: 300px;
+     font-weight: bold;
+}
+/* Карточки событий */
+ .events-list {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+    /* Для равномерного распределения карточек */
+}
+ .event-card {
+     position: relative;
+     flex: 0 0 calc(33.33% - 10px);
+     padding: 2px;
+     padding-bottom: 25px;
+     border-radius: 5px;
+     margin: 10px;
+     margin-bottom: 20px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* Медиазапрос для мобильных и планшетов */
+ @media screen and (max-width: 1023px) {
+     .event-card {
+         flex: 0 0 103%;
+        /* Увеличьте значение для еще более широкого отображения */
+         margin-bottom: 17px;
+         padding-bottom: 30px;
     }
-  }
-  
-  .event-image {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 5px 5px 0 0;
-    display: flex; /* Добавьте этот стиль для позиционирования элементов внутри .event-image */
-    flex-direction: column; /* Определите направление flex-контейнера как столбец */
-  }
-  
-  .event-image img {
-    width: 99.9%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 5px 5px 0 0;
-  }
-  
-  .event-date {
-    background-color: #f8c10d;; /* Белый фон */
-    color: black;
-    padding: 3px 10px; /* Подходящие отступы вокруг даты */
-    border-bottom-left-radius: 2px; /* Закругление внешнего левого нижнего угла */
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-weight: bold;
-  }
-  
-  .event-details {
-    margin-top: 20px;
-    width: 100%;
-  }
-  
-  .event-details p {
-    margin: 25px 0;
-  }
-  
-  .event-title {
-    font-family: Arial, sans-serif;
-    font-size: 25px;
-    font-weight: 700;
-  }
-  
-  .event-location a {
-    color: #3d9991;
-  }
-  
-  .event-link {
-    padding: 13px 26px;
-    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    font-style: normal;
-    text-transform: uppercase;
-    letter-spacing: .69px;
-    color: rgba(0,0,0,.74);
-    background-color: #f8c10d;
-    border-color: #f8c10d;
-    border-radius: 300px;
-    margin-top: 20px;
-  }
-  
-  /* Стиль для кнопки при наведении курсора */
-  .event-link:hover {
-    background-color: #e0a609; /* Измените цвет по своему усмотрению */
-    border-color: #e0a609;
-  }
+     .event-details {
+         box-sizing: border-box;
+         padding-left: 10px;
+         padding-right: 10px;
+    }
+     .event-details p {
+         box-sizing: border-box;
+    }
+}
+ .event-image {
+     position: relative;
+     width: 100%;
+     height: 200px;
+     overflow: hidden;
+     border-radius: 5px 5px 0 0;
+     display: flex;
+    /* Добавьте этот стиль для позиционирования элементов внутри .event-image */
+     flex-direction: column;
+    /* Определите направление flex-контейнера как столбец */
+}
+ .event-image img {
+     width: 99.9%;
+     height: 100%;
+     object-fit: cover;
+     object-position: center center;
+     border-radius: 5px 5px 0 0;
+}
+ .event-date {
+     color: #006400;
+}
+ .event-date, .event-time, .event-location {
+     display: block;
+     font-size: 15px;
+     font-weight: normal;
+    /* Убрал жирность шрифта */
+     margin: 5px 0;
+}
+ .event-details {
+     box-sizing: border-box;
+     margin-top: 20px;
+     width: 100%;
+     max-width: 100%;
+    /* Ограничение максимальной ширины на десктопе */
+     padding-left: 10px;
+     padding-right: 10px;
+     margin-left: auto;
+    /* Центрирование по горизонтали */
+     margin-right: auto;
+    /* Центрирование по горизонтали */
+}
+ .event-details p {
+     box-sizing: border-box;
+    /* Включаем отступы и границы в ширину */
+}
+ .event-title {
+     font-family: Arial,Helvetica,sans-serif;
+     font-size: 22px;
+     font-weight: 800;
+     color: #02374b;
+     text-transform: uppercase;
+     line-height: 1.2;
+}
+ .event-location a {
+     color: #3d9991;
+}
+ .event-description {
+     padding-bottom: 22px;
+}
+ .event-link {
+     position: absolute;
+     bottom: 0.1px;
+    /* Используйте значение, которое соответствует вашим потребностям */
+     left: 0;
+     right: 0;
+     padding: 15px 30px;
+     font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+     font-size: 14px;
+     font-weight: 600;
+     font-style: normal;
+     text-transform: uppercase;
+     letter-spacing: .69px;
+     color: rgba(0,0,0,.74);
+     background-color: #f8c10d;
+     border-color: #f8c10d;
+     border-radius: 5px;
+     display: block;
+     text-align: center;
+     margin: 0 auto;
+}
+/* Стиль для кнопки при наведении курсора */
+ .event-link:hover {
+     background-color: #e0a609;
+     border-color: #e0a609;
+}
+/* Стиль для иконок даты, времени и локации */
+ .event-date img, .event-time img, .event-location img {
+     width: 20px;
+     height: 20px;
+     object-fit: contain;
+    /* для сохранения соотношения сторон и сжатия картинки до нужного размера */
+     vertical-align: middle;
+     margin-right: 5px;
+    /* для добавления небольшого отступа между картинкой и текстом */
+}
+ @media screen and (max-width: 1023px) {
+     #events-section {
+         text-align: left;
+         padding: 0;
+    }
+     .event-title {
+         font-size: 25px;
+         line-height: 1.2;
+    }
+     .filters {
+         display: flex;
+         justify-content: space-between;
+        /* изменено на space-between */
+         align-items: center;
+         width: 100%;
+         margin: 0;
+         padding-bottom: 20px;
+    }
+     label {
+         font-weight: bold;
+         font-size: 20px;
+    }
+     #month-filter {
+         flex: 1;
+         max-width: 150px;
+         border-radius: 10px;
+         font-size: 20px;
+         margin-left: auto;
+        /* Прижимаем к правому краю */
+         background-color: #f8c10d;
+         border-color: #f8c10d;
+         border-radius: 300px;
+    }
+     .event-date, .event-time, .event-location {
+         font-size: 18px;
+    }
+}
